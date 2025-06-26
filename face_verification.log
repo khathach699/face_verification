@@ -1,0 +1,81 @@
+2025-06-25 08:08:30,171 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.105:5000
+2025-06-25 08:08:30,173 - INFO - [33mPress CTRL+C to quit[0m
+2025-06-25 11:12:00,320 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750731093/employee_faces/a8xjzhjihmjns5enbpcb.jpg
+2025-06-25 11:12:00,962 - ERROR - Error downloading image: 404 Client Error: Not Found for url: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750731093/employee_faces/a8xjzhjihmjns5enbpcb.jpg
+2025-06-25 11:12:00,967 - INFO - 127.0.0.1 - - [25/Jun/2025 11:12:00] "[35m[1mPOST /verify HTTP/1.1[0m" 500 -
+2025-06-25 11:12:28,985 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750731093/employee_faces/a8xjzhjihmjns5enbpcb.jpg
+2025-06-25 11:12:29,151 - ERROR - Error downloading image: 404 Client Error: Not Found for url: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750731093/employee_faces/a8xjzhjihmjns5enbpcb.jpg
+2025-06-25 11:12:29,152 - INFO - 127.0.0.1 - - [25/Jun/2025 11:12:29] "[35m[1mPOST /verify HTTP/1.1[0m" 500 -
+2025-06-25 11:24:21,278 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750731093/employee_faces/a8xjzhjihmjns5enbpcb.jpg
+2025-06-25 11:24:21,781 - ERROR - Error downloading image: 404 Client Error: Not Found for url: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750731093/employee_faces/a8xjzhjihmjns5enbpcb.jpg
+2025-06-25 11:24:21,782 - INFO - 127.0.0.1 - - [25/Jun/2025 11:24:21] "[35m[1mPOST /verify HTTP/1.1[0m" 500 -
+2025-06-25 11:30:13,144 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825732/employee_faces/cxasxnwx9g07rf5rafoc.jpg
+2025-06-25 11:30:13,638 - INFO - Downloading captured image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825812/attendance_images/xdzvvrbhxg9ezwyxajnm.jpg
+2025-06-25 11:30:14,375 - INFO - Images downloaded successfully. Loading images for recognition.
+2025-06-25 11:30:14,515 - INFO - Getting face encodings
+2025-06-25 11:30:16,642 - INFO - Comparing faces
+2025-06-25 11:30:16,646 - INFO - Face distance: 0.4476689232095997
+2025-06-25 11:30:16,648 - INFO - Verification result: False
+2025-06-25 11:30:16,649 - INFO - 127.0.0.1 - - [25/Jun/2025 11:30:16] "POST /verify HTTP/1.1" 200 -
+2025-06-25 11:30:36,573 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825732/employee_faces/cxasxnwx9g07rf5rafoc.jpg
+2025-06-25 11:30:36,922 - INFO - Downloading captured image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825835/attendance_images/t0nubhkjegaai8mqst1k.jpg
+2025-06-25 11:30:38,259 - INFO - Images downloaded successfully. Loading images for recognition.
+2025-06-25 11:30:38,274 - INFO - Getting face encodings
+2025-06-25 11:30:39,821 - INFO - Comparing faces
+2025-06-25 11:30:39,822 - INFO - Face distance: 0.4476689232095997
+2025-06-25 11:30:39,822 - INFO - Verification result: False
+2025-06-25 11:30:39,823 - INFO - 127.0.0.1 - - [25/Jun/2025 11:30:39] "POST /verify HTTP/1.1" 200 -
+2025-06-25 11:30:59,209 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825732/employee_faces/cxasxnwx9g07rf5rafoc.jpg
+2025-06-25 11:30:59,446 - INFO - Downloading captured image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825858/attendance_images/yhikcpqabfeixkkvna7n.jpg
+2025-06-25 11:31:00,577 - INFO - Images downloaded successfully. Loading images for recognition.
+2025-06-25 11:31:00,598 - INFO - Getting face encodings
+2025-06-25 11:31:02,303 - INFO - Comparing faces
+2025-06-25 11:31:02,303 - INFO - Face distance: 0.42927634163587336
+2025-06-25 11:31:02,304 - INFO - Verification result: False
+2025-06-25 11:31:02,304 - INFO - 127.0.0.1 - - [25/Jun/2025 11:31:02] "POST /verify HTTP/1.1" 200 -
+2025-06-25 11:32:52,870 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825732/employee_faces/cxasxnwx9g07rf5rafoc.jpg
+2025-06-25 11:32:53,030 - INFO - Downloading captured image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825972/attendance_images/qjfpzcwk0dzw9r5j1k8u.jpg
+2025-06-25 11:32:54,028 - INFO - Images downloaded successfully. Loading images for recognition.
+2025-06-25 11:32:54,054 - INFO - Getting face encodings
+2025-06-25 11:32:56,257 - INFO - Comparing faces
+2025-06-25 11:32:56,258 - INFO - Face distance: 0.42927634163587336
+2025-06-25 11:32:56,258 - INFO - Verification result: False
+2025-06-25 11:32:56,262 - INFO - 127.0.0.1 - - [25/Jun/2025 11:32:56] "POST /verify HTTP/1.1" 200 -
+2025-06-25 11:33:21,007 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825732/employee_faces/cxasxnwx9g07rf5rafoc.jpg
+2025-06-25 11:33:21,290 - INFO - Downloading captured image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750826000/attendance_images/vkgmsszolf9pahfprxoj.jpg
+2025-06-25 11:33:22,152 - INFO - Images downloaded successfully. Loading images for recognition.
+2025-06-25 11:33:22,175 - INFO - Getting face encodings
+2025-06-25 11:33:24,116 - INFO - Comparing faces
+2025-06-25 11:33:24,117 - INFO - Face distance: 0.407982486136662
+2025-06-25 11:33:24,117 - INFO - Verification result: False
+2025-06-25 11:33:24,118 - INFO - 127.0.0.1 - - [25/Jun/2025 11:33:24] "POST /verify HTTP/1.1" 200 -
+2025-06-25 11:35:44,155 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825732/employee_faces/cxasxnwx9g07rf5rafoc.jpg
+2025-06-25 11:35:45,172 - INFO - Downloading captured image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750826142/attendance_images/nb9fok9wdo1bqedffnhm.jpg
+2025-06-25 11:35:46,828 - INFO - Images downloaded successfully. Loading images for recognition.
+2025-06-25 11:35:46,854 - INFO - Getting face encodings
+2025-06-25 11:35:48,784 - INFO - Comparing faces
+2025-06-25 11:35:48,784 - INFO - Face distance: 0.407982486136662
+2025-06-25 11:35:48,785 - INFO - Verification result: False
+2025-06-25 11:35:48,786 - INFO - 127.0.0.1 - - [25/Jun/2025 11:35:48] "POST /verify HTTP/1.1" 200 -
+2025-06-25 11:37:24,518 - INFO - Downloading reference image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750825732/employee_faces/cxasxnwx9g07rf5rafoc.jpg
+2025-06-25 11:37:24,668 - INFO - Downloading captured image: https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750826244/attendance_images/c8cnsm6urw7vu0mnk0y9.jpg
+2025-06-25 11:37:25,638 - INFO - Images downloaded successfully. Loading images for recognition.
+2025-06-25 11:37:25,659 - INFO - Getting face encodings
+2025-06-25 11:37:27,821 - INFO - Comparing faces
+2025-06-25 11:37:27,822 - INFO - Face distance: 0.407982486136662
+2025-06-25 11:37:27,823 - INFO - Verification result: False
+2025-06-25 11:37:27,825 - INFO - 127.0.0.1 - - [25/Jun/2025 11:37:27] "POST /verify HTTP/1.1" 200 -
+2025-06-25 14:10:37,649 - ERROR - Request to download image timed out
+2025-06-25 16:13:05,100 - ERROR - Error downloading reference image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001D2DDB3C250>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+2025-06-25 16:14:00,849 - ERROR - Error downloading reference image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001D28000B400>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+2025-06-25 16:32:30,360 - ERROR - Error downloading reference image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001D2DE0B1E50>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+2025-06-25 16:53:31,101 - ERROR - Error downloading reference image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001BA5CE69850>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+2025-06-25 16:54:16,912 - ERROR - Error downloading captured image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750845233/attendance_images/uk8nffr14ygmbnssdxxf.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750845233/attendance_images/uk8nffr14ygmbnssdxxf.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001BA0105A6A0>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+2025-06-25 17:14:43,718 - ERROR - Error downloading reference image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x0000017D3E40C940>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+2025-06-25 17:21:52,574 - ERROR - Error downloading captured image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750846888/attendance_images/uwflfzwyollcggaacd6f.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750846888/attendance_images/uwflfzwyollcggaacd6f.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x0000017D3E3F1100>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+2025-06-25 17:22:49,269 - ERROR - Error downloading reference image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x0000017D3E43B1F0>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+2025-06-26 08:37:13,788 - ERROR - Error downloading captured image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750901812/attendance_images/koky8tgsoegv4natjf2p.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750901812/attendance_images/koky8tgsoegv4natjf2p.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001C68E811460>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))
+2025-06-26 08:38:07,739 - ERROR - Error downloading reference image https://res.cloudinary.com/dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg: HTTPSConnectionPool(host='res.cloudinary.com', port=443): Max retries exceeded with url: /dqkdh8qoe/image/upload/v1750835153/employee_faces/wkjeuvfqis4slrscvmve.jpg (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001C68D2FA6A0>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond'))

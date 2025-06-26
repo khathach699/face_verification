@@ -1,75 +1,101 @@
-# File: face_verification.py
-
-from flask import Flask, request, jsonify
-import face_recognition
+from flask import Flask, jsonify, request
 import requests
-from io import BytesIO
-import logging
+import face_recognition
+import numpy as np
+import io
+import time
+import traceback
 
 app = Flask(__name__)
-# Cấu hình logging để ghi ra file và hiển thị trên console
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def download_image(url, max_retries=3, delay=1):
+    """Tải ảnh từ URL với tối đa 3 lần thử lại."""
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(url, timeout=5)
+            response.raise_for_status()
+            return response.content
+        except (requests.exceptions.Timeout, requests.exceptions.RequestException) as e:
+            app.logger.warning(f"Attempt {attempt + 1} failed for URL {url}: {str(e)}")
+            print(f"[CONSOLE] Attempt {attempt + 1} failed for URL {url}: {str(e)}")
+            if attempt < max_retries - 1:
+                time.sleep(delay)  # Đợi trước khi thử lại
+                continue
+            app.logger.error(f"Failed to download image from {url} after {max_retries} attempts")
+            print(f"[CONSOLE] ERROR: Failed to download image from {url} after {max_retries} attempts")
+            raise Exception(f"Failed to download image after {max_retries} attempts: {str(e)}")
 
 @app.route('/verify', methods=['POST'])
 def verify_face():
     try:
-        data = request.json
-        if not data:
-            return jsonify({'error': 'Invalid JSON body'}), 400
+        # Nhận dữ liệu từ Node.js với tên trường đúng
+        reference_image_url = request.json.get('referenceImageUrl')
+        captured_image_url = request.json.get('capturedImageUrl')
 
-        captured_url = data.get('capturedImageUrl')
-        reference_url = data.get('referenceImageUrl')
+        if not reference_image_url or not captured_image_url:
+            app.logger.error("Missing referenceImageUrl or capturedImageUrl")
+            print("[CONSOLE] ERROR: Missing referenceImageUrl or capturedImageUrl")
+            return jsonify({'error': 'Missing referenceImageUrl or capturedImageUrl'}), 400
 
-        if not captured_url or not reference_url:
-            app.logger.warning('Missing image URLs in request.')
-            return jsonify({'error': 'Missing image URLs'}), 400
+        # Tải ảnh với cơ chế thử lại
+        reference_image_data = download_image(reference_image_url)
+        captured_image_data = download_image(captured_image_url)
 
-        app.logger.info(f"Attempting to download reference image: {reference_url}")
-        reference_response = requests.get(reference_url, timeout=20) # Tăng timeout lên 20 giây
-        reference_response.raise_for_status() # Ném lỗi nếu status code là 4xx hoặc 5xx
+        # Chuyển đổi dữ liệu ảnh thành định dạng numpy array
+        reference_image = face_recognition.load_image_file(io.BytesIO(reference_image_data))
+        captured_image = face_recognition.load_image_file(io.BytesIO(captured_image_data))
 
-        app.logger.info(f"Attempting to download captured image: {captured_url}")
-        captured_response = requests.get(captured_url, timeout=20) # Tăng timeout lên 20 giây
-        captured_response.raise_for_status() # Ném lỗi
+        # Lấy encodings của khuôn mặt
+        try:
+            reference_encodings = face_recognition.face_encodings(reference_image)
+            captured_encodings = face_recognition.face_encodings(captured_image)
+        except Exception as e:
+            app.logger.error(f"Could not process face features: {str(e)}")
+            print(f"[CONSOLE] ERROR: Could not process face features: {str(e)}")
+            return jsonify({'match': False, 'error': f'Could not process face features: {str(e)}'}), 200
 
-        app.logger.info("Images downloaded successfully. Loading images for recognition.")
-        
-        captured_img = face_recognition.load_image_file(BytesIO(captured_response.content))
-        reference_img = face_recognition.load_image_file(BytesIO(reference_response.content))
+        app.logger.info(f"Number of reference face encodings: {len(reference_encodings)}")
+        app.logger.info(f"Number of captured face encodings: {len(captured_encodings)}")
+        print(f"[CONSOLE] Number of reference face encodings: {len(reference_encodings)}")
+        print(f"[CONSOLE] Number of captured face encodings: {len(captured_encodings)}")
 
-        app.logger.info("Getting face encodings.")
-        # Lấy encoding của khuôn mặt đầu tiên tìm thấy
-        reference_encodings = face_recognition.face_encodings(reference_img)
-        if not reference_encodings:
-            app.logger.warning("No face detected in the reference image.")
+        # Kiểm tra số khuôn mặt
+        if len(reference_encodings) == 0:
+            app.logger.warning("No face detected in reference image")
+            print("[CONSOLE] WARNING: No face detected in reference image")
             return jsonify({'match': False, 'error': 'No face detected in reference image'}), 200
-
-        captured_encodings = face_recognition.face_encodings(captured_img)
-        if not captured_encodings:
-            app.logger.warning("No face detected in the captured image.")
+        if len(captured_encodings) == 0:
+            app.logger.warning("No face detected in captured image")
+            print("[CONSOLE] WARNING: No face detected in captured image")
             return jsonify({'match': False, 'error': 'No face detected in captured image'}), 200
+        if len(reference_encodings) > 1:
+            app.logger.warning(f"Multiple faces ({len(reference_encodings)}) detected in reference image. Using the first one.")
+            print(f"[CONSOLE] WARNING: Multiple faces ({len(reference_encodings)}) detected in reference image. Using the first one.")
+        if len(captured_encodings) > 1:
+            app.logger.warning(f"Multiple faces ({len(captured_encodings)}) detected in captured image. Using the first one.")
+            print(f"[CONSOLE] WARNING: Multiple faces ({len(captured_encodings)}) detected in captured image. Using the first one.")
 
-        app.logger.info("Comparing faces.")
         # So sánh khuôn mặt
-        is_match_np = face_recognition.compare_faces([reference_encodings[0]], captured_encodings[0])[0]
-        
-        # --- DÒNG SỬA LỖI QUAN TRỌNG ---
-        # Chuyển đổi numpy.bool_ thành bool của Python để jsonify hoạt động chắc chắn
-        is_match_python = bool(is_match_np)
-        
-        app.logger.info(f"Verification result: {is_match_python}")
-        return jsonify({'match': is_match_python})
+        app.logger.info("Comparing faces with tolerance=0.4...")
+        print("[CONSOLE] Comparing faces with tolerance=0.4...")
+        ref_encoding = reference_encodings[0]
+        cap_encoding = captured_encodings[0]
 
-    except requests.exceptions.Timeout:
-        logging.error("Request to download image timed out.")
-        return jsonify({'error': 'Failed to download image: Connection timed out.'}), 500
-    except requests.exceptions.RequestException as e:
-        logging.error(f"Error downloading image: {str(e)}")
-        return jsonify({'error': f"Failed to download image: {str(e)}"}), 500
+        distance = face_recognition.face_distance([ref_encoding], cap_encoding)[0]
+        is_match = face_recognition.compare_faces([ref_encoding], cap_encoding, tolerance=0.4)[0]
+
+        app.logger.info(f"Face comparison result: match={is_match}, distance={distance:.4f}")
+        print(f"[CONSOLE] Face comparison result: match={is_match}, distance={distance:.4f}")
+
+        return jsonify({'match': bool(is_match), 'distance': float(distance)})
+
     except Exception as e:
-        logging.error(f"An unexpected error occurred in face verification: {str(e)}")
-        # Trả về lỗi chi tiết để debug, nhưng trong production nên che giấu
-        return jsonify({'error': 'An internal server error occurred', 'details': str(e)}), 500
+        app.logger.error(f"Unexpected error in face verification: {str(e)}", exc_info=True)
+        print(f"[CONSOLE] ERROR: Unexpected error in face verification: {str(e)}")
+        traceback.print_exc()
+        return jsonify({'error': 'Internal server error', 'details': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    print("Starting Flask server for face verification...")
+    app.logger.info("Flask server for face verification starting...")
+    app.run(host='0.0.0.0', port=5000, debug=True)
