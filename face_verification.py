@@ -12,7 +12,7 @@ def download_image(url, max_retries=3, delay=1):
     """Tải ảnh từ URL với tối đa 3 lần thử lại."""
     for attempt in range(max_retries):
         try:
-            response = requests.get(url, timeout=5)
+            response = requests.get(url, timeout=10)
             response.raise_for_status()
             return response.content
         except (requests.exceptions.Timeout, requests.exceptions.RequestException) as e:

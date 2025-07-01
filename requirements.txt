@@ -1,0 +1,4 @@
+flask
+requests
+face_recognition
+numpy
